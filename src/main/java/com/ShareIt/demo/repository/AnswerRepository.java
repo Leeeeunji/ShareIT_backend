@@ -1,10 +1,12 @@
 package com.ShareIt.demo.repository;
 
 import com.ShareIt.demo.domain.Answer;
+import com.ShareIt.demo.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -17,5 +19,10 @@ public class AnswerRepository {
 
     public Answer findOne(Long id) {
         return em.find(Answer.class, id);
+    }
+
+    public Answer findByContent(String content) {
+        return em.createQuery("select a from Answer a where a.content = :content", Answer.class)
+                .setParameter("content", content).getSingleResult();
     }
 }

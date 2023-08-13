@@ -27,7 +27,7 @@ public class Tendency {
      */
     public static Tendency createTendency(Member member) {
         Tendency tendency = new Tendency();
-        // tendency.setMember(member);
+        tendency.setMember(member);
         List<Answer> answers = member.getAnswers();
 
         int ie = 0, ns = 0, tf = 0, pj = 0; // 앞글자 +, 뒷글자 -

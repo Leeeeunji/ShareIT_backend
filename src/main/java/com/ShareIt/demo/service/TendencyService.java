@@ -16,12 +16,13 @@ public class TendencyService {
     private final TendencyRepository tendencyRepository;
     private final MemberRepository memberRepository;
 
-    public void saveTendency(Long memberId) {
+    public Long saveTendency(Long memberId) {
         Member member = memberRepository.findOne(memberId);
         // member에 필요한 모든 Answer들이 매핑되어 있다고 가정
         Tendency tendency = Tendency.createTendency(member);
         member.addTendency(tendency);
         tendencyRepository.save(tendency);
+        return tendency.getId();
     }
 
     @Transactional(readOnly = true)

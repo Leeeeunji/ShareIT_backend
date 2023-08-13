@@ -3,6 +3,7 @@ package com.ShareIt.demo.service;
 import com.ShareIt.demo.domain.Answer;
 import com.ShareIt.demo.domain.Member;
 import com.ShareIt.demo.repository.AnswerRepository;
+import com.ShareIt.demo.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class AnswerService {
     private final AnswerRepository answerRepository;
+    private final MemberRepository memberRepository;
+
 
     public void saveAnswer(Answer answer) { // 단순 저장 기능
         answerRepository.save(answer);
@@ -22,7 +25,8 @@ public class AnswerService {
         return answerRepository.findOne(id);
     }
 
-    public Long updateAnswer(Answer answer, Member member) { // member와 매핑
+    public Long updateAnswer(Answer answer, Long memberId) { // member와 매핑
+        Member member = memberRepository.findOne(memberId);
         answer.setMember(member);
         return answer.getId();
     }
