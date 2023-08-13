@@ -18,11 +18,9 @@ public class Tendency {
     @Enumerated(EnumType.STRING)
     private TenType type;
 
-    /*
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
-    */
 
     /**
      * tendency 생성
@@ -79,9 +77,9 @@ public class Tendency {
         return tendency;
     }
 
-   /* // 연관관계 메서드
+   // 연관관계 메서드
     public void setMember(Member member) {
         this.member = member;
         member.getTendencies().add(this);
-    }*/
+    }
 }
