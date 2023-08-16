@@ -1,9 +1,10 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/shareIt # 네트워크 연결 링크
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://db-i3cm8-kr.vpc-pub-cdb.ntruss.com:3306/picktreeDB?characterEncoding=utf8
+    username: user
+    password: h902105K@!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
 
   jpa:
     hibernate:
