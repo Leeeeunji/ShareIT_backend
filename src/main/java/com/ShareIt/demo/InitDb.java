@@ -1,6 +1,7 @@
 package com.ShareIt.demo;
 
 import com.ShareIt.demo.domain.Answer;
+import com.ShareIt.demo.domain.Member;
 import com.ShareIt.demo.domain.Question;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -32,6 +33,10 @@ public class InitDb {
          * question & answer 초기화
          */
         public void QuestionAnswerDbInit() {
+            Member member=new Member();
+            member.setToken("hyoseong");
+            em.persist(member);
+
             List<Question> questions = new ArrayList<>(11);
             for (int i = 0; i <= 10; i++) questions.add(new Question());
             List<Answer> answers = new ArrayList<>(41);

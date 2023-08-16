@@ -20,8 +20,12 @@ public class MemberServiceTest {
     @Test
     public void 회원등록() {
         Member member = new Member();
-        member.setToken("token");
+        member.setToken("yeonsu");
         Long id = memberService.join(member);
+
+        Member member1=new Member();
+        member1.setToken("hyoseong");
+        memberRepository.save(member1);
 
         Assertions.assertThat(memberRepository.findOne(id)).isEqualTo(member);
     }
