@@ -1,13 +1,17 @@
 package com.ShareIt.demo.service;
 
+import com.ShareIt.demo.api.dto.ResultDto;
 import com.ShareIt.demo.domain.Answer;
 import com.ShareIt.demo.domain.Member;
+import com.ShareIt.demo.domain.TenType;
+import com.ShareIt.demo.domain.Tendency;
 import com.ShareIt.demo.repository.AnswerRepository;
 import com.ShareIt.demo.repository.TendencyRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,23 +28,24 @@ public class TendencyServiceTest {
     @Autowired
     AnswerRepository answerRepository;
     @Test
-    @Rollback(value = false)
     public void 유형계산() {
-        // member 생성
         Member member = new Member();
         member.setToken("member1");
         Long memberId = memberService.join(member);
-        
-        // answer 매핑
-        for (int i = 1; i <= 10; i++) {
-            Answer answer = answerRepository.findByContent("a" + i + "-" + (i % 4 + 1));
-            answerService.updateAnswer(answer, memberId);
-        }
 
-        // 유형 계산
-        Long tendencyId = tendencyService.saveTendency(memberId);
-        
-        // 검증
-        Assertions.assertThat(member.getTendencies().get(0).getId()).isEqualTo(tendencyId);
+        Tendency tendency = Tendency.createTendency(member); // tendency까지 생성해서 매핑
+        tendencyService.save(tendency);
+
+        Tendency t = member.getTendencies().get(0);
+
+        // ENTJ
+        t.setTenTypeIE(-5);
+        t.setTenTypeNS(5);
+        t.setTenTypeTF(5);
+        t.setTenTypePJ(-5);
+
+        tendency.makeResult();
+        Assertions.assertThat(tendency.getType()).isEqualTo(TenType.ENTJ);
+
     }
 }

@@ -29,9 +29,10 @@ public class InitDb {
     static class InitService {
         private final EntityManager em;
 
-        /**
+         /**
          * question & answer 초기화
          */
+
         public void QuestionAnswerDbInit() {
             Member member=new Member();
             member.setToken("hyoseong");
@@ -43,6 +44,7 @@ public class InitDb {
             for (int i = 0; i <= 40; i++) answers.add(new Answer());
             for (int i = 1; i <= 10; i++) {
                 questions.get(i).setContent("q" + i);
+                questions.get(i).setNum(new Long(i));
                 em.persist(questions.get(i));
                 for (int j = 1; j <= 4; j++) {
                     int ansIdx = 4 * (i-1) + j;
@@ -59,6 +61,7 @@ public class InitDb {
                         answers.get(ansIdx).setTenTypeIE(-1);
                         answers.get(ansIdx).setTenTypePJ(1);
                     }
+                    answers.get(ansIdx).setNum(new Long(j));
                     answers.get(ansIdx).setContent("a" + i + "-" + j);
                     answers.get(ansIdx).setQuestion(questions.get(i));
                     em.persist(answers.get(ansIdx));
@@ -67,3 +70,4 @@ public class InitDb {
         }
     }
 }
+

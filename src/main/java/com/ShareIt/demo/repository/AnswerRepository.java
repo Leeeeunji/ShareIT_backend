@@ -25,4 +25,9 @@ public class AnswerRepository {
         return em.createQuery("select a from Answer a where a.content = :content", Answer.class)
                 .setParameter("content", content).getSingleResult();
     }
+
+    public Answer findByNum(Long num) {
+        return em.createQuery("select a from Answer a where a.num = :num", Answer.class)
+                .setParameter("num", num).getSingleResult();
+    }
 }

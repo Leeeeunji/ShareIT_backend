@@ -2,6 +2,7 @@ package com.ShareIt.demo.service;
 
 import com.ShareIt.demo.domain.Member;
 import com.ShareIt.demo.domain.Tendency;
+import com.ShareIt.demo.repository.AnswerRepository;
 import com.ShareIt.demo.repository.MemberRepository;
 import com.ShareIt.demo.repository.TendencyRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,13 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class TendencyService {
 
     private final TendencyRepository tendencyRepository;
-    private final MemberRepository memberRepository;
 
-    public Long saveTendency(Long memberId) {
-        Member member = memberRepository.findOne(memberId);
-        // member에 필요한 모든 Answer들이 매핑되어 있다고 가정
-        Tendency tendency = Tendency.createTendency(member);
-        member.addTendency(tendency);
+    public Long save(Tendency tendency) {
         tendencyRepository.save(tendency);
         return tendency.getId();
     }
@@ -29,6 +25,4 @@ public class TendencyService {
     public Tendency findOne(Long tendencyId) {
         return tendencyRepository.findOne(tendencyId);
     }
-
-
 }
