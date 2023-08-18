@@ -4,6 +4,8 @@ import com.ShareIt.demo.domain.Member;
 import com.ShareIt.demo.domain.TenType;
 import lombok.Data;
 
+import javax.persistence.Enumerated;
+
 
 @Data
 public class ResultDto {
@@ -12,8 +14,8 @@ public class ResultDto {
     private TenType tenType;
 
     public ResultDto(Member member) {
-        memberId = member.getId();
-        token = member.getToken();
-        tenType = member.getTendencies().get(1).getType();
+        this.memberId = member.getId();
+        this.token = member.getToken();
+        this.tenType = member.getTendencies().getType();
     }
 }

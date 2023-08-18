@@ -1,23 +1,13 @@
 package com.ShareIt.demo.repository;
 
 import com.ShareIt.demo.domain.Tendency;
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
+import java.util.Optional;
 
 @Repository
-@RequiredArgsConstructor
-public class TendencyRepository {
-    private final EntityManager em;
+public interface TendencyRepository extends JpaRepository<Tendency,Long> {
 
-    public void save(Tendency tendency) {
-        em.persist(tendency);
-    }
-
-    public Tendency findOne(Long id) {
-        return em.find(Tendency.class, id);
-    }
-
-
+    Tendency findByMemberId(Long id);
 }

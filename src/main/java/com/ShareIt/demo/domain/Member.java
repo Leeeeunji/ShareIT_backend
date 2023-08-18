@@ -18,15 +18,15 @@ public class Member {
 
     private String token;
 
-    @OneToMany(mappedBy = "member")
-    private List<Tendency> tendencies = new ArrayList<>();
+    @OneToOne(mappedBy = "member")
+    private Tendency tendencies;
 
     @OneToMany(mappedBy = "member")
     private List<Answer> answers = new ArrayList<>();
 
-    public void addTendency(Tendency tendency) {
-        tendencies.add(tendency);
-    }
+//    public void addTendency(Tendency tendency) {
+//        tendencies.add(tendency);
+//    }
 
     public void register(String token) {
         this.token = token;

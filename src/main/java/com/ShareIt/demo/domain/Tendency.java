@@ -25,7 +25,7 @@ public class Tendency {
     private int tenTypePJ; // P: +, J: -
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -83,7 +83,6 @@ public class Tendency {
    // 연관관계 메서드
     public void setMember(Member member) {
         this.member = member;
-        member.addTendency(this);
     }
 
     public void update_tenTypeIE(int num) {

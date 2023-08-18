@@ -1,13 +1,12 @@
 package com.ShareIt.demo.service;
 
-import com.ShareIt.demo.domain.Member;
 import com.ShareIt.demo.domain.Tendency;
-import com.ShareIt.demo.repository.AnswerRepository;
-import com.ShareIt.demo.repository.MemberRepository;
 import com.ShareIt.demo.repository.TendencyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,8 +20,11 @@ public class TendencyService {
         return tendency.getId();
     }
 
-    @Transactional(readOnly = true)
-    public Tendency findOne(Long tendencyId) {
-        return tendencyRepository.findOne(tendencyId);
+    public Optional<Tendency> findOne(Long tendencyId) {
+        return tendencyRepository.findById(tendencyId);
+    }
+
+    public Tendency findByMemberId(Long id) {
+        return tendencyRepository.findByMemberId(id);
     }
 }
