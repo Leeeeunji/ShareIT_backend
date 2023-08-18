@@ -15,8 +15,17 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
     private long id;
 
-    @Column
-    private String name;
+    /*@Column
+    private String name;*/
+
+    private TenType type;
+
+    private String flagImg;
+
+    private String printerImg;
+
+    private String titleImg;
 }

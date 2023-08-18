@@ -27,4 +27,8 @@ public class Member {
     public void addTendency(Tendency tendency) {
         tendencies.add(tendency);
     }
+
+    public void register(String token) {
+        this.token = token;
+    }
 }

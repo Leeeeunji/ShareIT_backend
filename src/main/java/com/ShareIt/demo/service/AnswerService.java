@@ -25,9 +25,21 @@ public class AnswerService {
         return answerRepository.findOne(id);
     }
 
-    public Long updateAnswer(Answer answer, Long memberId) { // member와 매핑
+    /*public Long mapAnswerMember(Long answerId, Long memberId) { // member와 매핑
+        Answer answer = answerRepository.findOne(answerId);
+        Answer newAns = new Answer();
+        newAns.setContent(answer.getContent());
+        newAns.setQuestion(answer.getQuestion());
+        newAns.setNum(answer.getNum());
+        newAns.setTenTypeIE(answer.getTenTypeIE());
+        newAns.setTenTypeNS(answer.getTenTypeNS());
+        newAns.setTenTypeTF(answer.getTenTypeTF());
+        newAns.setTenTypePJ(answer.getTenTypePJ());
+
         Member member = memberRepository.findOne(memberId);
-        answer.setMember(member);
+        newAns.setMember(member);
+        answerRepository.save(newAns);
+
         return answer.getId();
-    }
+    }*/
 }

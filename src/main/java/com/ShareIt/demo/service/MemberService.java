@@ -2,6 +2,7 @@ package com.ShareIt.demo.service;
 
 import com.ShareIt.demo.domain.Member;
 import com.ShareIt.demo.repository.MemberRepository;
+import com.ShareIt.demo.repository.TendencyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
