@@ -1,10 +1,10 @@
  SET FOREIGN_KEY_CHECKS = 0;
- TRUNCATE QUESTION;
- TRUNCATE MEMBER;
- TRUNCATE ANSWER;
- TRUNCATE QUESTION_ANSWERS;
+ TRUNCATE question;
+ TRUNCATE member;
+ TRUNCATE answer;
+ TRUNCATE question_answers;
  SET FOREIGN_KEY_CHECKS = 1;
- INSERT INTO QUESTION (QUESTION_ID, NUM, CONTENT)
+ INSERT INTO question (QUESTION_ID, NUM, CONTENT)
  VALUES
      (1, 1, "첫 조별과제다. 다들 말이없다. 내가 먼저 말을 꺼내야하나? 이러면 조장인데?"),
      (2, 2, "시간이 흘러 조별과제 발표날이 되었다. 발표하기로 맡은 팀원이 갑자기 연락이 안된다. 어떡하지???"),
@@ -20,7 +20,7 @@
      (12, 12, "학교에서 기획서를 써야되는 상황이 발생하였다. 팀원들과 논의를 하게 되었다. 당신은 어떤 의견을 내실건가요?")
  ;
 
- INSERT INTO ANSWER (ten_typeie, ten_typens, ten_typepj, ten_typetf, content, member_id, question_id, num, answer_id)
+ INSERT INTO answer (ten_typeie, ten_typens, ten_typepj, ten_typetf, content, member_id, question_id, num, answer_id)
  VALUES
  	(1, 0, 0, 0, "에이 모르겠다. 내가 해야겠다.", null, 1, 1, 11),
      (-1, 0, 0, 0, "아 좀 어색한데? 그냥 조용히 있어야지", null, 1, 2, 12),
@@ -48,7 +48,7 @@
      (0, 0, 0, 1, "일단 서로 의논하면서 써볼까요?", null, 12, 2, 122)
  ;
 
- INSERT INTO QUESTION_ANSWERS (question_question_id, answers_answer_id)
+ INSERT INTO question_answers (question_question_id, answers_answer_id)
  VALUES
  	(1, 11),
      (1, 12),
@@ -75,6 +75,3 @@
      (12, 121),
      (12, 122)
  ;
-=======
-
->>>>>>> 29879064a0c64c363b73f2a45c97bdd32c42c159

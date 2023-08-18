@@ -47,23 +47,22 @@ public class ApiController {
     @PostMapping("/answer/{memberId}/{answerId}")
     public ResponseEntity<ResponseDto> updateMember(
             @PathVariable("memberId") Long memberId,
-            @PathVariable("answerId") Long answerId,
-            @RequestBody @Valid UpdateMemberRequest request) {
+            @PathVariable("answerId") Long answerId) {
 
         Member member = memberService.findOne(memberId);
         Answer answer = answerService.findOne(answerId);
         Tendency tendency = member.getTendencies().get(0);
 
         // tendency에 answer 값 저장
-        int temp;
-        temp = tendency.getTenTypeIE() + answer.getTenTypeIE();
-        tendency.setTenTypeIE(temp);
-        temp = tendency.getTenTypeNS() + answer.getTenTypeNS();
-        tendency.setTenTypeNS(temp);
-        temp = tendency.getTenTypeTF() + answer.getTenTypeTF();
-        tendency.setTenTypeTF(temp);
-        temp = tendency.getTenTypePJ() + answer.getTenTypePJ();
-        tendency.setTenTypePJ(temp);
+        tendency.update_tenTypeIE(answer.getTenTypeIE());
+        tendency.update_tenTypeNS(answer.getTenTypeNS());
+        tendency.update_tenTypeTF(answer.getTenTypeTF());
+        tendency.update_tenTypePJ(answer.getTenTypePJ());
+
+        System.out.println(tendency.getTenTypeIE());
+        System.out.println(tendency.getTenTypeNS());
+        System.out.println(tendency.getTenTypeTF());
+        System.out.println(tendency.getTenTypePJ());
 
         return ResponseEntity.ok().body(new ResponseDto("답변이 성공적으로 저장되었습니다."));
     }
@@ -79,7 +78,7 @@ public class ApiController {
     }
     
     // Tendency 계산 및 결과 표시
-    @GetMapping("/result/{memberId}/")
+    @GetMapping("/result/{memberId}")
     public ResponseEntity getResult(@PathVariable("memberId") Long memberId) {
         Member member = memberService.findOne(memberId);
         Tendency tendency = member.getTendencies().get(0);

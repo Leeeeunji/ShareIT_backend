@@ -85,4 +85,20 @@ public class Tendency {
         this.member = member;
         member.addTendency(this);
     }
+
+    public void update_tenTypeIE(int num) {
+        this.tenTypeIE+=num;
+    }
+
+    public void update_tenTypeNS(int num) {
+        this.tenTypeNS+=num;
+    }
+
+    public void update_tenTypeTF(int num) {
+        this.tenTypeTF+=num;
+    }
+
+    public void update_tenTypePJ(int num) {
+        this.tenTypePJ+=num;
+    }
 }
