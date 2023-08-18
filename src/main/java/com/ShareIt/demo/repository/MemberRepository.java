@@ -25,10 +25,10 @@ public class MemberRepository {
                 .getResultList();
     }
 
-    public List<Member> findByToken(String token) {
+    /*public List<Member> findByToken(String token) {
         return em.createQuery("select m from Member m where m.token = :token", Member.class)
                 .setParameter("token", token)
                 .getResultList();
-    }
+    }*/
 
 }

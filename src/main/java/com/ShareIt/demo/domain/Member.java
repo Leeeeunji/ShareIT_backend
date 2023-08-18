@@ -16,19 +16,13 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    private String token;
-
     @OneToOne(mappedBy = "member")
     private Tendency tendencies;
 
     @OneToMany(mappedBy = "member")
     private List<Answer> answers = new ArrayList<>();
 
-//    public void addTendency(Tendency tendency) {
-//        tendencies.add(tendency);
-//    }
-
-    public void register(String token) {
+    /*public void register(String token) {
         this.token = token;
-    }
+    }*/
 }

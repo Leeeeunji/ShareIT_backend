@@ -10,12 +10,12 @@ import javax.persistence.Enumerated;
 @Data
 public class ResultDto {
     private Long memberId;
-    private String token;
+    // private String token;
     private TenType tenType;
 
     public ResultDto(Member member) {
         this.memberId = member.getId();
-        this.token = member.getToken();
+        // this.token = member.getToken();
         this.tenType = member.getTendencies().getType();
     }
 }

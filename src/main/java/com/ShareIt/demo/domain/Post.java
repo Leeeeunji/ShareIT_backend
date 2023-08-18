@@ -18,9 +18,7 @@ public class Post {
     @Column(name = "post_id")
     private long id;
 
-    /*@Column
-    private String name;*/
-
+    @Enumerated(EnumType.STRING)
     private TenType type;
 
     private String flagImg;

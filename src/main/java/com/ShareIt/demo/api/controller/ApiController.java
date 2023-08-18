@@ -32,10 +32,10 @@ public class ApiController {
 
     //회원 등록
     @PostMapping("/member/save")
-    public ResponseEntity<ResponseDto> saveMember(@RequestBody @Validated MemberSignUpRequest request) {
+    public ResponseEntity<ResponseDto> saveMember() {
 
         Member member = new Member();
-        member.register(request.getToken());
+        /*member.register(request.getToken());*/
         memberService.join(member);
         Tendency tendency = Tendency.createTendency(member); // tendency까지 생성해서 매핑
         tendencyService.save(tendency);
