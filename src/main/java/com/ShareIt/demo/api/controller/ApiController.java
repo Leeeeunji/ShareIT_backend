@@ -1,6 +1,6 @@
 package com.ShareIt.demo.api.controller;
 
-import com.ShareIt.demo.api.dto.MemberSignUpRequest;
+import com.ShareIt.demo.api.dto.MemberDto;
 import com.ShareIt.demo.api.dto.QuestionDto;
 import com.ShareIt.demo.api.dto.ResponseDto;
 import com.ShareIt.demo.api.dto.ResultDto;
@@ -16,10 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,8 +28,8 @@ public class ApiController {
     private final QuestionService questionService;
 
     //회원 등록
-    @PostMapping("/member/save")
-    public ResponseEntity<ResponseDto> saveMember() {
+    @PostMapping("/start")
+    public ResponseEntity<MemberDto> saveMember() {
 
         Member member = new Member();
         /*member.register(request.getToken());*/
@@ -40,7 +37,8 @@ public class ApiController {
         Tendency tendency = Tendency.createTendency(member); // tendency까지 생성해서 매핑
         tendencyService.save(tendency);
 
-        return ResponseEntity.ok().body(new ResponseDto("회원가입이 완료되었습니다."));
+        MemberDto memberDto = new MemberDto(member.getId());
+        return ResponseEntity.ok().body(memberDto);
     }
 
     // 문제풀이
