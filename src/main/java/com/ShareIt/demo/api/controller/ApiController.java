@@ -31,7 +31,7 @@ public class ApiController {
     private final QuestionService questionService;
 
     //회원 등록
-    @PostMapping("/member/save")
+    @PostMapping("/start")
     public ResponseEntity<ResponseDto> saveMember() {
 
         Member member = new Member();
