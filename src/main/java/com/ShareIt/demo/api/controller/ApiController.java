@@ -24,19 +24,19 @@ public class ApiController {
     private final TendencyService tendencyService;
     private final QuestionService questionService;
 
-    //회원 등록
-    @PostMapping("/start")
-    public ResponseEntity<MemberDto> saveMember() {
-
-        Member member = new Member();
-        /*member.register(request.getToken());*/
-        memberService.join(member);
-        Tendency tendency = Tendency.createTendency(member); // tendency까지 생성해서 매핑
-        tendencyService.save(tendency);
-
-        MemberDto memberDto = new MemberDto(member.getId());
-        return ResponseEntity.ok().body(memberDto);
-    }
+//    //회원 등록
+//    @PostMapping("/start")
+//    public ResponseEntity<MemberDto> saveMember() {
+//
+//        Member member = new Member();
+//        /*member.register(request.getToken());*/
+//        memberService.join(member);
+//        Tendency tendency = Tendency.createTendency(member); // tendency까지 생성해서 매핑
+//        tendencyService.save(tendency);
+//
+//        MemberDto memberDto = new MemberDto(member.getId());
+//        return ResponseEntity.ok().body(memberDto);
+//    }
 
     // 문제풀이
     @PostMapping("/answer/{memberId}/{answerId}")

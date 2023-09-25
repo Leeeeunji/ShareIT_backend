@@ -79,3 +79,7 @@
 INSERT INTO MEMBER (member_id)
 VALUES
 	(1);
+
+INSERT INTO TENDENCY (tendency_id, ten_typeie, ten_typens, ten_typepj, ten_typetf, type, member_id)
+VALUES
+	(1, 0, 0, 0, 0, null, 1);
