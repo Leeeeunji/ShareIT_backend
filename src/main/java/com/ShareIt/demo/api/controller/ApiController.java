@@ -1,13 +1,10 @@
 package com.ShareIt.demo.api.controller;
 
-import com.ShareIt.demo.api.dto.MemberSignUpRequest;
+import com.ShareIt.demo.api.dto.MemberDto;
 import com.ShareIt.demo.api.dto.QuestionDto;
 import com.ShareIt.demo.api.dto.ResponseDto;
 import com.ShareIt.demo.api.dto.ResultDto;
-import com.ShareIt.demo.domain.Answer;
-import com.ShareIt.demo.domain.Member;
-import com.ShareIt.demo.domain.Question;
-import com.ShareIt.demo.domain.Tendency;
+import com.ShareIt.demo.domain.*;
 import com.ShareIt.demo.service.AnswerService;
 import com.ShareIt.demo.service.MemberService;
 import com.ShareIt.demo.service.QuestionService;
@@ -16,10 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,7 +26,7 @@ public class ApiController {
 
     //회원 등록
     @PostMapping("/start")
-    public ResponseEntity<ResponseDto> saveMember() {
+    public ResponseEntity<MemberDto> saveMember() {
 
         Member member = new Member();
         /*member.register(request.getToken());*/
@@ -40,7 +34,8 @@ public class ApiController {
         Tendency tendency = Tendency.createTendency(member); // tendency까지 생성해서 매핑
         tendencyService.save(tendency);
 
-        return ResponseEntity.ok().body(new ResponseDto("회원가입이 완료되었습니다."));
+        MemberDto memberDto = new MemberDto(member.getId());
+        return ResponseEntity.ok().body(memberDto);
     }
 
     // 문제풀이
@@ -81,12 +76,59 @@ public class ApiController {
         Member member = memberService.findOne(memberId);
         Tendency tendency = tendencyService.findByMemberId(memberId);
         tendency.makeResult();
-
         tendencyService.save(tendency);
 
-        System.out.println(tendency.getType());
-        ResultDto resultDto = new ResultDto(member);
+        TenType ten=tendency.getType();
+        if(ten.equals(TenType.INTP)) {
+            // AI
+        }
+        else if(ten.equals(TenType.INTJ)) {
+            // 풀스택
+        }
+        else if(ten.equals(TenType.INFP)) {
+            // 웹디자이너
+        }
+        else if(ten.equals(TenType.INFJ)) {
+            // 보안개발자
+        }
+        else if(ten.equals(TenType.ISTP)) {
+            //블록 체인 개발자
+        }
+        else if(ten.equals(TenType.ISTJ)) {
+            //백엔드
+        }
+        else if(ten.equals(TenType.ISFP)) {
+            // 네트워크
+        }
+        else if(ten.equals(TenType.ISFJ)) {
+            //빅데이터
+        }
+        else if(ten.equals(TenType.ENTP)) {
+            //IOS
+        }
+        else if(ten.equals(TenType.ENTJ)) {
+            //게임 개발자
+        }
+        else if(ten.equals(TenType.ENFP)) {
+            // 그래픽 개발자
+        }
+        else if(ten.equals(TenType.ENFJ)) {
+            //프론트
+        }
+        else if(ten.equals(TenType.ESTP)) {
+            // 안드로이드
+        }
+        else if(ten.equals(TenType.ESTJ)) {
+            // 데브옵스
+        }
+        else if(ten.equals(TenType.ESFP)) {
+            // 임베디드
+        }
+        else if(ten.equals(TenType.ESFJ)) {
+            // 기획자
+        }
 
+        ResultDto resultDto = new ResultDto(member);
         return ResponseEntity.ok().body(resultDto);
     }
 
