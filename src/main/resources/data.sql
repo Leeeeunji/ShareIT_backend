@@ -3,6 +3,7 @@
  TRUNCATE member;
  TRUNCATE answer;
  TRUNCATE question_answers;
+ TRUNCATE tendency;
  SET FOREIGN_KEY_CHECKS = 1;
  INSERT INTO question (QUESTION_ID, NUM, CONTENT)
  VALUES
