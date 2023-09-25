@@ -75,3 +75,7 @@
      (12, 121),
      (12, 122)
  ;
+
+INSERT INTO MEMBER (member_id)
+VALUES
+	(1);
