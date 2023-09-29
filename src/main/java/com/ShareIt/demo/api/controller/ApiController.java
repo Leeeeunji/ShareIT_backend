@@ -1,14 +1,8 @@
 package com.ShareIt.demo.api.controller;
 
-import com.ShareIt.demo.api.dto.MemberDto;
-import com.ShareIt.demo.api.dto.QuestionDto;
-import com.ShareIt.demo.api.dto.ResponseDto;
-import com.ShareIt.demo.api.dto.ResultDto;
+import com.ShareIt.demo.api.dto.*;
 import com.ShareIt.demo.domain.*;
-import com.ShareIt.demo.service.AnswerService;
-import com.ShareIt.demo.service.MemberService;
-import com.ShareIt.demo.service.QuestionService;
-import com.ShareIt.demo.service.TendencyService;
+import com.ShareIt.demo.service.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +17,7 @@ public class ApiController {
     private final AnswerService answerService;
     private final TendencyService tendencyService;
     private final QuestionService questionService;
+    private final VisitedService visitedService;
 
 //    //회원 등록
 //    @PostMapping("/start")
@@ -77,6 +72,8 @@ public class ApiController {
         Tendency tendency = tendencyService.findByMemberId(memberId);
         tendency.makeResult();
         tendencyService.save(tendency);
+        //방문자수 count 증가
+        visitedService.increase();
 
         TenType ten=tendency.getType();
         if(ten.equals(TenType.INTP)) {
@@ -130,6 +127,16 @@ public class ApiController {
 
         ResultDto resultDto = new ResultDto(member);
         return ResponseEntity.ok().body(resultDto);
+    }
+
+    @GetMapping("/visited")
+    public VisitedDto visited(){
+        int count = visitedService.getCount();
+
+        VisitedDto visitedDto = new VisitedDto();
+        visitedDto.setVisited(count);
+
+        return visitedDto;
     }
 
     @Data
