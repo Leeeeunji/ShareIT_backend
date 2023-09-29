@@ -3,6 +3,7 @@
  TRUNCATE member;
  TRUNCATE answer;
  TRUNCATE question_answers;
+ TRUNCATE tendency;
  SET FOREIGN_KEY_CHECKS = 1;
  INSERT INTO question (QUESTION_ID, NUM, CONTENT)
  VALUES
@@ -75,3 +76,11 @@
      (12, 121),
      (12, 122)
  ;
+
+INSERT INTO MEMBER (member_id)
+VALUES
+	(1);
+
+INSERT INTO TENDENCY (tendency_id, ten_typeie, ten_typens, ten_typepj, ten_typetf, type, member_id)
+VALUES
+	(1, 0, 0, 0, 0, null, 1);
