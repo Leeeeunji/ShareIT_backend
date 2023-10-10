@@ -45,37 +45,37 @@ public class Tendency {
     
     public void makeResult() {
         // TenType Setting
-        if (tenTypeIE >= 0 && tenTypeNS >= 0 && tenTypeTF >= 0 && tenTypePJ >= 0) {         // 1. intp
+        if (tenTypeIE <= 0 && tenTypeNS >= 0 && tenTypeTF >= 0 && tenTypePJ >= 0) {         // 1. intp
             type = TenType.INTP;
-        } else if (tenTypeIE >= 0 && tenTypeNS >= 0 && tenTypeTF >= 0 && tenTypePJ < 0) {   // 2. intj
+        } else if (tenTypeIE <= 0 && tenTypeNS >= 0 && tenTypeTF >= 0 && tenTypePJ < 0) {   // 2. intj
             type = TenType.INTJ;
-        } else if (tenTypeIE >= 0 && tenTypeNS >= 0 && tenTypeTF < 0 && tenTypePJ >= 0) {    // 3. infp
+        } else if (tenTypeIE <= 0 && tenTypeNS >= 0 && tenTypeTF < 0 && tenTypePJ >= 0) {    // 3. infp
             type = TenType.INFP;
-        } else if (tenTypeIE >= 0 && tenTypeNS >= 0 && tenTypeTF < 0 && tenTypePJ < 0) {    // 4. infj
+        } else if (tenTypeIE <= 0 && tenTypeNS >= 0 && tenTypeTF < 0 && tenTypePJ < 0) {    // 4. infj
             type = TenType.INFJ;
-        } else if (tenTypeIE >= 0 && tenTypeNS < 0 && tenTypeTF >= 0 && tenTypePJ >= 0) {   // 5. istp
+        } else if (tenTypeIE <= 0 && tenTypeNS < 0 && tenTypeTF >= 0 && tenTypePJ >= 0) {   // 5. istp
             type = TenType.ISTP;
-        } else if (tenTypeIE >= 0 && tenTypeNS < 0 && tenTypeTF >= 0 && tenTypePJ < 0) {    // 6. istj
+        } else if (tenTypeIE <= 0 && tenTypeNS < 0 && tenTypeTF >= 0 && tenTypePJ < 0) {    // 6. istj
             type = TenType.ISTJ;
-        } else if (tenTypeIE >= 0 && tenTypeNS < 0 && tenTypeTF < 0 && tenTypePJ >= 0) {    // 7. isfp
+        } else if (tenTypeIE <= 0 && tenTypeNS < 0 && tenTypeTF < 0 && tenTypePJ >= 0) {    // 7. isfp
             type = TenType.ISFP;
-        } else if (tenTypeIE >= 0 && tenTypeNS < 0 && tenTypeTF < 0 && tenTypePJ < 0) {     // 8. isfj
+        } else if (tenTypeIE <= 0 && tenTypeNS < 0 && tenTypeTF < 0 && tenTypePJ < 0) {     // 8. isfj
             type = TenType.ISFJ;
-        } else if (tenTypeIE < 0 && tenTypeNS >= 0 && tenTypeTF >= 0 && tenTypePJ >= 0) {  // 9. entp
+        } else if (tenTypeIE > 0 && tenTypeNS >= 0 && tenTypeTF >= 0 && tenTypePJ >= 0) {  // 9. entp
             type = TenType.ENTP;
-        } else if (tenTypeIE < 0 && tenTypeNS >= 0 && tenTypeTF >= 0 && tenTypePJ < 0) {   // 10. entj
+        } else if (tenTypeIE > 0 && tenTypeNS >= 0 && tenTypeTF >= 0 && tenTypePJ < 0) {   // 10. entj
             type = TenType.ENTJ;
-        } else if (tenTypeIE < 0 && tenTypeNS >= 0 && tenTypeTF < 0 && tenTypePJ >= 0) {    // 11. enfp
+        } else if (tenTypeIE > 0 && tenTypeNS >= 0 && tenTypeTF < 0 && tenTypePJ >= 0) {    // 11. enfp
             type = TenType.ENFP;
-        } else if (tenTypeIE < 0 && tenTypeNS >= 0 && tenTypeTF < 0 && tenTypePJ < 0) {    // 12. enfj
+        } else if (tenTypeIE > 0 && tenTypeNS >= 0 && tenTypeTF < 0 && tenTypePJ < 0) {    // 12. enfj
             type = TenType.ENFJ;
-        } else if (tenTypeIE < 0 && tenTypeNS < 0 && tenTypeTF >= 0 && tenTypePJ >= 0) {   // 13. estp
+        } else if (tenTypeIE > 0 && tenTypeNS < 0 && tenTypeTF >= 0 && tenTypePJ >= 0) {   // 13. estp
             type = TenType.ESTP;
-        } else if (tenTypeIE < 0 && tenTypeNS < 0 && tenTypeTF >= 0 && tenTypePJ < 0) {    // 14. estj
+        } else if (tenTypeIE > 0 && tenTypeNS < 0 && tenTypeTF >= 0 && tenTypePJ < 0) {    // 14. estj
             type = TenType.ESTJ;
-        } else if (tenTypeIE < 0 && tenTypeNS < 0 && tenTypeTF < 0 && tenTypePJ >= 0) {    // 15. esfp
+        } else if (tenTypeIE > 0 && tenTypeNS < 0 && tenTypeTF < 0 && tenTypePJ >= 0) {    // 15. esfp
             type = TenType.ESFP;
-        } else if (tenTypeIE < 0 && tenTypeNS < 0 && tenTypeTF < 0 && tenTypePJ < 0) {     // 16. esfj
+        } else if (tenTypeIE > 0 && tenTypeNS < 0 && tenTypeTF < 0 && tenTypePJ < 0) {     // 16. esfj
             type = TenType.ESFJ;
         }
     }
@@ -86,18 +86,18 @@ public class Tendency {
     }
 
     public void update_tenTypeIE(int num) {
-        this.tenTypeIE+=num;
+        this.tenTypeIE += num;
     }
 
     public void update_tenTypeNS(int num) {
-        this.tenTypeNS+=num;
+        this.tenTypeNS += num;
     }
 
     public void update_tenTypeTF(int num) {
-        this.tenTypeTF+=num;
+        this.tenTypeTF += num;
     }
 
     public void update_tenTypePJ(int num) {
-        this.tenTypePJ+=num;
+        this.tenTypePJ += num;
     }
 }

@@ -21,7 +21,7 @@
      (12, 12, "학교에서 기획서를 써야되는 상황이 발생하였다. 팀원들과 논의를 하게 되었다. 당신은 어떤 의견을 내실건가요?")
  ;
 
- INSERT INTO answer (ten_typeie, ten_typens, ten_typepj, ten_typetf, content, member_id, question_id, num, answer_id)
+ INSERT INTO answer (ten_typeie, ten_typens, ten_typetf, ten_typepj, content, member_id, question_id, num, answer_id)
  VALUES
  	(1, 0, 0, 0, "에이 모르겠다. 내가 해야겠다.", null, 1, 1, 11),
      (-1, 0, 0, 0, "아 좀 어색한데? 그냥 조용히 있어야지", null, 1, 2, 12),
