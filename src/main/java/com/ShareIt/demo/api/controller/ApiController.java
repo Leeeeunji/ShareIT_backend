@@ -41,8 +41,7 @@ public class ApiController {
 
 
         Answer answer = answerService.findOne(answerId);
-        Tendency tendency = tendencyService.findByMemberId(memberId);
-
+        Tendency tendency = tendencyService.findByMemberId(1L);
 
         // tendency에 answer 값 저장
         tendency.update_tenTypeIE(answer.getTenTypeIE());
