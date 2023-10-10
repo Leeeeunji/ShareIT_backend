@@ -100,4 +100,5 @@ public class Tendency {
     public void update_tenTypePJ(int num) {
         this.tenTypePJ += num;
     }
+
 }

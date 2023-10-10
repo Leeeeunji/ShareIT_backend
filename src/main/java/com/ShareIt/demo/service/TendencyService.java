@@ -27,4 +27,12 @@ public class TendencyService {
     public Tendency findByMemberId(Long id) {
         return tendencyRepository.findByMemberId(id);
     }
+
+    public void initTendency(Tendency tendency){
+        tendency.setTenTypeIE(0);
+        tendency.setTenTypeNS(0);
+        tendency.setTenTypeTF(0);
+        tendency.setTenTypePJ(0);
+
+    }
 }

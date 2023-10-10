@@ -124,6 +124,9 @@ public class ApiController {
             // 기획자
         }
 
+        tendencyService.initTendency(tendency);
+        tendencyService.save(tendency);
+
         ResultDto resultDto = new ResultDto(member);
         return ResponseEntity.ok().body(resultDto);
     }
