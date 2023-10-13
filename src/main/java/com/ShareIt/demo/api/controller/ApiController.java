@@ -9,6 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin
@@ -37,11 +42,11 @@ public class ApiController {
     @PostMapping("/answer/{memberId}/{answerId}")
     public ResponseEntity<ResponseDto> updateMember(
             @PathVariable("memberId") Long memberId,
-            @PathVariable("answerId") Long answerId) {
-
-
+            @PathVariable("answerId") Long answerId,HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Member member = (Member) session.getAttribute("memberSession");
         Answer answer = answerService.findOne(answerId);
-        Tendency tendency = tendencyService.findByMemberId(1L);
+        Tendency tendency = tendencyService.findByMemberId(member.getId());
 
         // tendency에 answer 값 저장
         tendency.update_tenTypeIE(answer.getTenTypeIE());
@@ -66,13 +71,17 @@ public class ApiController {
     
     // Tendency 계산 및 결과 표시
     @GetMapping("/result/{memberId}")
-    public ResponseEntity getResult(@PathVariable("memberId") Long memberId) {
-        Member member = memberService.findOne(memberId);
-        Tendency tendency = tendencyService.findByMemberId(memberId);
+    public ResponseEntity getResult(@PathVariable("memberId") Long memberId,HttpServletRequest request) {
+        //Member member = memberService.findOne(memberId);
+        //Tendency tendency = tendencyService.findByMemberId(memberId);
+
+        //세션 정보로 member매핑
+        HttpSession session = request.getSession();
+        Member member = (Member) session.getAttribute("memberSession");
+        Tendency tendency = tendencyService.findByMemberId(member.getId());
         tendency.makeResult();
         tendencyService.save(tendency);
-        //방문자수 count 증가
-        visitedService.increase();
+
 
         TenType ten=tendency.getType();
         if(ten.equals(TenType.INTP)) {
@@ -124,21 +133,44 @@ public class ApiController {
             // 기획자
         }
 
+
+        //방문자수 count 증가
+        visitedService.increase();
+
+        if(session!=null){
+            session.invalidate();
+        }
         tendencyService.initTendency(tendency);
         tendencyService.save(tendency);
 
-        ResultDto resultDto = new ResultDto(member);
+        ResultDto resultDto = new ResultDto(tendency);
         return ResponseEntity.ok().body(resultDto);
     }
 
     @GetMapping("/visited")
-    public VisitedDto visited(){
+    public ResponseEntity visited(HttpServletRequest request, HttpServletResponse response){
         int count = visitedService.getCount();
 
         VisitedDto visitedDto = new VisitedDto();
         visitedDto.setVisited(count);
 
-        return visitedDto;
+
+        Member member=new Member();
+        memberService.join(member);
+        HttpSession session = request.getSession(true);
+        session.setAttribute("memberSession",member);
+
+
+        System.out.println("세션정보출력 "+session.getId() + ", " + session.getAttribute("memberSession"));
+
+
+        Tendency tendency = Tendency.createTendency(member); // tendency까지 생성해서 매핑
+        tendencyService.save(tendency);
+        System.out.println(member.getId());
+
+
+
+        return ResponseEntity.ok().body(visitedDto);
     }
 
     @Data
