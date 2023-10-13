@@ -1,0 +1,17 @@
+package com.ShareIt.demo;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+
+                .allowedOrigins("http://13.210.163.78/","http://share-it.p-e.kr","http://localhost:3000") // 허용할 출처
+                .allowedMethods("*")
+                .allowCredentials(true);
+    }
+}

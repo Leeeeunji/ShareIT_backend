@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin
 public class ApiController {
     private final MemberService memberService;
     private final AnswerService answerService;
@@ -137,9 +136,7 @@ public class ApiController {
         //방문자수 count 증가
         visitedService.increase();
 
-        if(session!=null){
-            session.invalidate();
-        }
+
         tendencyService.initTendency(tendency);
         tendencyService.save(tendency);
 
@@ -167,6 +164,7 @@ public class ApiController {
         Tendency tendency = Tendency.createTendency(member); // tendency까지 생성해서 매핑
         tendencyService.save(tendency);
         System.out.println(member.getId());
+
 
 
 
