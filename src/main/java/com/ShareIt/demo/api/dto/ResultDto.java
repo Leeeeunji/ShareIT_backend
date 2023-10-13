@@ -2,6 +2,7 @@ package com.ShareIt.demo.api.dto;
 
 import com.ShareIt.demo.domain.Member;
 import com.ShareIt.demo.domain.TenType;
+import com.ShareIt.demo.domain.Tendency;
 import lombok.Data;
 
 import javax.persistence.Enumerated;
@@ -13,9 +14,9 @@ public class ResultDto {
     // private String token;
     private TenType tenType;
 
-    public ResultDto(Member member) {
-        this.memberId = member.getId();
+    public ResultDto(Tendency tendency) {
+        this.memberId = tendency.getId()-1;
         // this.token = member.getToken();
-        this.tenType = member.getTendencies().getType();
+        this.tenType = tendency.getType();
     }
 }

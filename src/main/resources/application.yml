@@ -50,6 +50,10 @@ spring:
       init:
         mode: always
 
+  session:
+    store-type: jdbc
+    jdbc.initialize-schema: always
+
 logging.level:
   org.hibernate.SQL: debug
   org.hibernate.type: trace
