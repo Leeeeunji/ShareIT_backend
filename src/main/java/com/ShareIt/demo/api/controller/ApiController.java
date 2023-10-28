@@ -38,7 +38,7 @@ public class ApiController {
 //    }
 
     // 문제풀이
-    @PostMapping("/answer/{memberId}/{answerId}")
+    @GetMapping("/answer/{memberId}/{answerId}")
     public ResponseEntity<ResponseDto> updateMember(
             @PathVariable("memberId") Long memberId,
             @PathVariable("answerId") Long answerId,HttpServletRequest request) {
@@ -71,8 +71,6 @@ public class ApiController {
     // Tendency 계산 및 결과 표시
     @GetMapping("/result/{memberId}")
     public ResponseEntity getResult(@PathVariable("memberId") Long memberId,HttpServletRequest request) {
-        //Member member = memberService.findOne(memberId);
-        //Tendency tendency = tendencyService.findByMemberId(memberId);
 
         //세션 정보로 member매핑
         HttpSession session = request.getSession();
@@ -139,6 +137,8 @@ public class ApiController {
 
         tendencyService.initTendency(tendency);
         tendencyService.save(tendency);
+
+        session.invalidate();
 
         ResultDto resultDto = new ResultDto(tendency);
         return ResponseEntity.ok().body(resultDto);

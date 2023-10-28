@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
 
-                .allowedOrigins("http://13.210.163.78/","http://share-it.p-e.kr","http://localhost:3000") // 허용할 출처
+                .allowedOrigins("http://share-it.p-e.kr","http://localhost:3000","http://localhost:8080") // 허용할 출처
                 .allowedMethods("*")
                 .allowCredentials(true);
     }
